@@ -133,4 +133,56 @@ class KpuController extends BaseController {
 		return View::make('depan.unduhan', compact('instansi', 'unduhan'));
 	}
 
+	/*
+	** POST localhost:8000/saran
+	*/
+	public function saran() {
+
+		# Validasi
+		$v = Validator::make(Input::all(), array(
+			'nama' => 'required',
+			'email' => 'required|email',
+			'komentar' => 'required|min:2'));
+
+		# Bila gagal
+		if ($v->fails())
+
+			# Balik kehalaman sama dengan eror
+			return Redirect::back()->withErrors($v)->withInput()->withPesan('Terjadi Kesalahan.');
+
+		# Bila sukses, masukin komentar
+		
+		Komentar::create(Input::all());
+
+		# Rujuk ke identitas route yang dimaksud
+		return Redirect::route('index')
+			->withPesan('Komentar Anda telah dikirim.');
+
+	}
+
+	/*
+	** POST localhost:8000/admin/saran
+	*/
+	public function adminSaran() {
+
+		# Kumpulkan semua komentar
+		$komentar = Komentar::all();
+
+		# Tampilkan View
+		return View::make('admin.profil.saran', compact('komentar'));
+
+	}
+
+	/*
+	** POST localhost:8000/admin/saran
+	*/
+	public function postAdminSaran($id) {
+
+		# Kumpulkan semua komentar
+		$komentar = Komentar::destroy($id);
+
+		# Kembali ke halaman sama dengan pesan sukses
+		return Redirect::back()->withPesan('Komentar dari '. $komentar->nama . ' telah terhapus.');
+	}
+
 }

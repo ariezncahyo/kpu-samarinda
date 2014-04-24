@@ -15,26 +15,41 @@
       <small>Nurjanah [10150150XX]</small>
     </blockquote>
     <div class="well bs-component">
-      {{ Form::open(array('class' => 'form-horizontal')) }}
+      {{ Form::open(array('route' => 'post.saran', 'class' => 'form-horizontal')) }}
         <fieldset>
           <h3><i class="glyphicon glyphicon-envelope"></i> Kritik &amp; Saran</h3>
           <hr/>
-          <div class="form-group">
+          @if(Session::has('pesan'))
+          <div class="alert alert-dismissable alert-info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Perhatian!</strong> {{ Session::get('pesan') }}
+          </div>
+          @endif
+          <div class="form-group {{ ($errors->has('nama')) ? 'has-error' : '' }}">
             {{ Form::label('nama', 'Nama', array('class' => 'col-lg-3 control-label')) }}
             <div class="col-lg-9">
               {{ Form::text('nama', null, array('class' => 'form-control', 'placeholder' => 'Tuliskan Nama Anda')) }}
+              @if($errors->has('nama'))
+                  <small><span class="help-block text-center">{{ $errors->first('nama') }}</span></small>
+              @endif
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
             {{ Form::label('email', 'Email', array('class' => 'col-lg-3 control-label')) }}
             <div class="col-lg-9">
               {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email Anda')) }}
+              @if($errors->has('email'))
+                  <small><span class="help-block text-center">{{ $errors->first('email') }}</span></small>
+              @endif
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group {{ ($errors->has('komentar')) ? 'has-error' : '' }}">
             {{ Form::label('komentar', 'Komentar', array('class' => 'col-lg-3 control-label')) }}
             <div class="col-lg-9">
               {{ Form::textarea('komentar', null, array('rows' => '5', 'class' => 'form-control', 'placeholder' => 'Suarakan Komentar Anda')) }}
+              @if($errors->has('komentar'))
+                  <small><span class="help-block text-center">{{ $errors->first('komentar') }}</span></small>
+              @endif
             </div>
           </div>
           

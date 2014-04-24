@@ -18,6 +18,7 @@ Route::get('partai', ['as' => 'partai', 'uses' => 'KpuController@partai']);
 Route::get('partai/{id}', ['as' => 'partai.lihat', 'uses' => 'KpuController@lihatPartai']);
 Route::get('pemilu', ['as' => 'pemilu', 'uses' => 'KpuController@pemilu']);
 Route::get('unduhan', ['as' => 'unduhan', 'uses' => 'KpuController@unduhan']);
+Route::post('saran', ['as' => 'post.saran', 'before' =>'csrf', 'uses' => 'KpuController@saran']);
 
 /*
 | BACKEND ROUTE ==========================
@@ -49,6 +50,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('sah/kecamatan', ['as' => 'sah.kecamatan', 'uses' => 'SahController@kecamatan']);
 	Route::get('sah/kelurahan', ['as' => 'sah.kelurahan', 'uses' => 'SahController@kelurahan']);
 	Route::get('sah/tps', ['as' => 'sah.tps', 'uses' => 'SahController@tps']);
+	Route::get('saran', ['as' => 'admin.saran', 'uses' => 'KpuController@adminSaran']);
 	# Tambahan ====================
 	# POST ===============
 	Route::post('sejarah', ['uses' => 'ProfilController@postSejarah']);
@@ -64,6 +66,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::post('sah/kelurahan/batal/{id}', ['as' => 'post.batal.kelurahan', 'uses' => 'SahController@postBatalKelurahan']);
 	Route::post('sah/tps/{id}', ['as' => 'post.sah.tps', 'uses' => 'SahController@postTps']);
 	Route::post('sah/tps/batal/{id}', ['as' => 'post.batal.tps', 'uses' => 'SahController@postBatalTps']);
+	Route::post('saran/{id}', ['as' => 'post.admin.saran', 'uses' => 'KpuController@postAdminSaran']);
 });
 
 

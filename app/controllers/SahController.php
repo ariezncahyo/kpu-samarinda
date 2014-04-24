@@ -61,14 +61,27 @@ class SahController extends BaseController {
 	*/
 	public function kelurahan() {
 
-		# Id Pengguna aktif
-		$user = Petugas::where('id', '=', Auth::user()->id)->first()->id_kecamatan;
+		# Kondisi Jika Admin yang login
+		if(Auth::user()->id_hak_akses === 1) {
 
-		# Simpan semua isi tps kedalam variabel $tps
-		$kelurahan = Kelurahan::where('id_kecamatan', '=', $user)->get();
+			# Ambil semua data kelurahan
+			$kelurahan = Kelurahan::all();
+
+		# Sedangkan selain Admin
+		} else {
+
+			# Id Pengguna aktif
+			$user = Petugas::where('id', '=', Auth::user()->id)->first()->id_kecamatan;
+
+			# Simpan semua isi tps kedalam variabel $tps
+			$kelurahan = Kelurahan::where('id_kecamatan', '=', $user)->get();
 		
+		}
+
 		# Tampilkan view yang dituju beserta variabel kelurahan
 		return View::make('admin.sah.kelurahan', compact('kelurahan'));
+		
+		
 	}
 
 	/*

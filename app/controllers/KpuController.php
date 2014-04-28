@@ -11,7 +11,7 @@ class KpuController extends BaseController {
 	}
 
 	/*
-	** GET localhost:8000/admin
+	** GET localhost:8000/
 	*/
 	public function index() {
 

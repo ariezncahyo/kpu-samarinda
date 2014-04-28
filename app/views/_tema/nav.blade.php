@@ -16,7 +16,10 @@
 					<ul class="dropdown-menu">
 						<li><a href="{{ route('admin.kecamatan.index') }}">Kecamatan</a></li>
 						<li><a href="{{ route('admin.kelurahan.index') }}">Kelurahan</a></li>
-						<li><a href="{{ route('admin.petugas.index') }}">Data Petugas</a></li>  
+						<li><a href="{{ route('admin.petugas.index') }}">Data Petugas</a></li> 
+						<li class="divider"></li>  
+						<li><a href="{{ route('admin.penduduk.dps') }}">DPS</a></li>  
+						<li><a href="{{ route('admin.penduduk.dpt') }}">DPT</a></li>  
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -50,6 +53,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="{{ route('admin') }}"><i class="fa fa-home"></i></a></li>
 				<li><a href="{{ route('sah.kelurahan') }}">Data Kelurahan</a></li>
+				<li><a href="{{ route('penduduk.kecamatan') }}">Data Penduduk</a></li>
 				<li><a href="{{ route('admin.berita.index') }}">Buat Berita</a></li>
 				<li><a href="{{ route('admin.unduhan.index') }}">Unduhan</a></li>
 			</ul>

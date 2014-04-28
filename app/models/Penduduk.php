@@ -31,17 +31,22 @@ class Penduduk extends Eloquent {
 		return $this->belongsTo('Kelurahan', 'id_kelurahan');
 	}
 
+	# Relasi Many-to-one dengan TPS
+	public function tps() {
+		return $this->belongsTo('Tps', 'id_tps');
+	}
+
 	# Dropdown Jenis Kelamin
 	public static function jenis_kelamin() {
 		$temp = array(
-			'Lk' => 'Laki-laki', 
-			'Pr' => 'Perempuan');
+			'Laki-laki', 
+			'Perempuan');
 		return $temp;
 	}
 
 	# Dropdown Status Perkawinan
 	public static function status_perkawinan() {
-		$temp = array('Jomblo', 'Menikah');
+		$temp = array('Belum menikah', 'Menikah');
 		return $temp;
 	}
 }

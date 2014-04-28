@@ -9,7 +9,7 @@ class Tps extends Eloquent {
 	protected $guarded = array('id');
 
 	# MASS ASSIGNMENT
-	protected $fillable = array();
+	protected $fillable = array('nama_ketua', 'lokasi', 'nomor_urut', 'id_kelurahan');
 
 	# Aturan validasi
 	public static $rules = array(
@@ -21,6 +21,11 @@ class Tps extends Eloquent {
 	# Relasi Many-to-one dengan Kelurahan
 	public function kelurahan() {
 		return $this->hasMany('Kelurahan', 'id_kelurahan');
+	}
+
+	# Relasi Many-to-one dengan Penduduk
+	public function penduduk() {
+		return $this->hasMany('Penduduk', 'id_tps');
 	}
 
 	# Dropdown TPS

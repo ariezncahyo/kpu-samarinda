@@ -1,9 +1,5 @@
 <?php
 
-Route::get('tes', function() {
-	return Petugas::where('id', '=', Auth::user()->id)->first()->id;
-	return $temp->kelurahan->id;
-});
 
 /*
 | FRONTEND ROUTE ==========================
@@ -33,10 +29,17 @@ Route::group(['prefix' => 'admin'], function() {
 
 	# Fitur Resource Controller ==================
 	Route::resource('kecamatan', 'KecamatanController');
+	Route::get('/per-kecamatan/{id?}', 'KelurahanController@index');
+
 	Route::resource('kelurahan', 'KelurahanController');
+	Route::get('/per-kelurahan/{id?}/{tps?}', 'PendudukController@index');
+
 	Route::resource('tps', 'TpsController');
 	Route::resource('petugas', 'PetugasController');
+
 	Route::resource('penduduk', 'PendudukController');
+	Route::get('camat/penduduk', array('as' => 'penduduk.kecamatan', 'uses' => 'PendudukController@kecamatan'));
+
 	Route::resource('berita', 'BeritaController');
 	Route::resource('partai', 'PartaiController');
 	Route::resource('unduhan', 'UnduhanController');
@@ -51,6 +54,8 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('sah/kelurahan', ['as' => 'sah.kelurahan', 'uses' => 'SahController@kelurahan']);
 	Route::get('sah/tps', ['as' => 'sah.tps', 'uses' => 'SahController@tps']);
 	Route::get('saran', ['as' => 'admin.saran', 'uses' => 'KpuController@adminSaran']);
+	Route::get('dpt', ['as' => 'admin.penduduk.dpt', 'uses' => 'PendudukController@dpt']);
+	Route::get('dps', ['as' => 'admin.penduduk.dps', 'uses' => 'PendudukController@dps']);
 	# Tambahan ====================
 	# POST ===============
 	Route::post('sejarah', ['uses' => 'ProfilController@postSejarah']);
@@ -66,6 +71,10 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::post('sah/kelurahan/batal/{id}', ['as' => 'post.batal.kelurahan', 'uses' => 'SahController@postBatalKelurahan']);
 	Route::post('sah/tps/{id}', ['as' => 'post.sah.tps', 'uses' => 'SahController@postTps']);
 	Route::post('sah/tps/batal/{id}', ['as' => 'post.batal.tps', 'uses' => 'SahController@postBatalTps']);
+	Route::post('sah/penduduk/kelurahan/{id}', ['as' => 'post.sah.penduduk.kelurahan', 'uses' => 'SahController@postPendudukKelurahan']);
+	Route::post('sah/penduduk/kelurahan/batal/{id}', ['as' => 'post.batal.penduduk.kelurahan', 'uses' => 'SahController@postBatalPendudukKelurahan']);
+	Route::post('sah/penduduk/kecamatan/{id}', ['as' => 'post.sah.penduduk.kecamatan', 'uses' => 'SahController@postPendudukKelurahan']);
+	Route::post('sah/penduduk/kecamatan/batal/{id}', ['as' => 'post.batal.penduduk.kecamatan', 'uses' => 'SahController@postBatalPendudukKelurahan']);
 	Route::post('saran/{id}', ['as' => 'post.admin.saran', 'uses' => 'KpuController@postAdminSaran']);
 });
 

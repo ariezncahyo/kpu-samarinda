@@ -12,7 +12,7 @@
   <div class="col-lg-7">
     <blockquote>
       <p>Selamat Datang di Komisi Pemilihan Umum Samarinda. Meningkatnya bangsa ini ditentukan oleh kecerdasan Anda dalam memilih. Gunakan hak pilih Anda!</p>
-      <small>Nurjanah [10150150XX]</small>
+      <small>Nurjanah [1015015112]</small>
     </blockquote>
     <div class="well bs-component">
       {{ Form::open(array('route' => 'post.saran', 'class' => 'form-horizontal')) }}

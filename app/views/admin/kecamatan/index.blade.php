@@ -46,7 +46,7 @@
 											@foreach ($kecamatan as $kecamatan)
 											<tr>
 												<td>{{{ $kecamatan->id }}}</td>
-												<td>{{{ $kecamatan->nama }}}</td>
+												<td>{{ HTML::link('/admin/per-kecamatan/'.$kecamatan->id, $kecamatan->nama) }}</td>
 												<td>{{{ $kecamatan->kodepos }}}</td>
 												<td>
 													{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.kecamatan.destroy', $kecamatan->id))) }}

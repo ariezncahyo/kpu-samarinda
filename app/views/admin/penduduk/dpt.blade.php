@@ -23,7 +23,7 @@
 							<div class="header">	
 								<!-- <a href="{{ route('admin.penduduk.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah Penduduk</a>						
 								-->
-								<h3>Daftar Seluruh Penduduk</h3>
+								<h3>Daftar Pemilih Tetap</h3>
 							</div>
 							<div class="content">
 								<div class="table-responsive">
@@ -45,37 +45,31 @@
 										</thead>
 										<tbody>
 											@foreach ($penduduk as $penduduk)
-											<tr>
-												<td>{{{ $penduduk->kk }}}</td>
-												<td>{{{ $penduduk->ktp }}}</td>
-												<td>{{{ $penduduk->nama }}}</td>
-												<td>{{{ $penduduk->tempat_lahir }}}, {{{ date("d M Y", strtotime($penduduk->tanggal_lahir)) }}}</td>
-												<td>{{{ ($penduduk->jenis_kelamin==0) ? 'Laki-laki' : 'Perempuan' }}}</td>
-												<td>{{{ $penduduk->kelurahan->nama }}}</td>
-												<td>{{{ $penduduk->kecamatan->nama }}}</td>
-												<td>{{ HTML::link('admin/per-kelurahan/'.$penduduk->kelurahan->id.'/'.$penduduk->id_tps,$penduduk->tps->nomor_urut) }}</td>
-												<td>{{ Form::checkbox('sah_kelurahan', $penduduk->sah_kelurahan, ($penduduk->sah_kelurahan === 1) ? 'checked' : '', array('disabled' => 'disabled')) }}</td>
-												<td>
-													@if($penduduk->sah_kecamatan == 0)
-														{{ Form::open(array('method' => 'post', 'route' => array('post.sah.penduduk.kecamatan', $penduduk->id))) }}
-															<button type="submit" class="btn btn-warning btn-xs pull-right">Sahkan</button>
+												@if(($penduduk->sah_kelurahan === 1) && ($penduduk->sah_kecamatan === 1))
+												
+												<tr>
+													<td>{{{ $penduduk->kk }}}</td>
+													<td>{{{ $penduduk->ktp }}}</td>
+													<td>{{{ $penduduk->nama }}}</td>
+													<td>{{{ $penduduk->tempat_lahir }}}, {{{ date("d M Y", strtotime($penduduk->tanggal_lahir)) }}}</td>
+													<td>{{{ ($penduduk->jenis_kelamin==0) ? 'Laki-laki' : 'Perempuan' }}}</td>
+													<td>{{{ $penduduk->kelurahan->nama }}}</td>
+													<td>{{{ $penduduk->kecamatan->nama }}}</td>
+													<td>{{ HTML::link('admin/per-kelurahan/'.$penduduk->kelurahan->id.'/'.$penduduk->id_tps,$penduduk->tps->nomor_urut) }}</td>
+													<td>{{ Form::checkbox('sah_kelurahan', $penduduk->sah_kelurahan, ($penduduk->sah_kelurahan === 1) ? 'checked' : '', array('disabled' => 'disabled')) }}</td>
+													<td>{{ Form::checkbox('sah_kecamatan', $penduduk->sah_kecamatan, ($penduduk->sah_kecamatan === 1) ? 'checked' : '', array('disabled' => 'disabled')) }}</td>
+													<td style="width:110px">
+														{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.penduduk.destroy', $penduduk->id))) }}
+															<button type="submit" class="btn btn-danger btn-xs pull-right"><i class="fa fa-times"></i></button>
 														{{ Form::close() }}
-													@else
-														{{ Form::open(array('method' => 'post', 'route' => array('post.batal.penduduk.kecamatan', $penduduk->id))) }}
-															<button type="submit" class="btn btn-danger btn-xs pull-right">Batalkan</button>
-														{{ Form::close() }}
-													@endif
-												</td>
-												<td style="width:110px">
-													{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.penduduk.destroy', $penduduk->id))) }}
-														<button type="submit" class="btn btn-danger btn-xs pull-right"><i class="fa fa-times"></i></button>
-													{{ Form::close() }}
-													<!--
-													{{ link_to_route('admin.penduduk.edit', 'Edit', array($penduduk->id), array('class' => 'btn btn-info btn-xs pull-right')) }}
-													-->
-													{{ link_to_route('admin.penduduk.show', 'Detail', array($penduduk->id), array('class' => 'btn btn-info btn-xs pull-right')) }}
-												</td>
-											</tr>
+														<!--
+														{{ link_to_route('admin.penduduk.edit', 'Edit', array($penduduk->id), array('class' => 'btn btn-info btn-xs pull-right')) }}
+														-->
+														{{ link_to_route('admin.penduduk.show', 'Detail', array($penduduk->id), array('class' => 'btn btn-info btn-xs pull-right')) }}
+													</td>
+												</tr>
+												@else
+												@endif
 											@endforeach
 										</tbody>
 									</table>							

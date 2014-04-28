@@ -41,7 +41,8 @@
 												<th>Nama</th>
 												<th>TTL</th>
 												<th>Jenis Kelamin</th>
-												<th>Aksi</th>
+												<th style="width:200px">Sah</th>
+												<th style="width:170px">Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -52,6 +53,19 @@
 												<td>{{{ $penduduk->nama }}}</td>
 												<td>{{{ $penduduk->tempat_lahir }}}, {{{ $penduduk->tanggal_lahir }}}</td>
 												<td>{{{ ($penduduk->jenis_kelamin==0) ? 'Laki-laki' : 'Perempuan' }}}</td>
+												<td>
+													@if($penduduk->sah_kelurahan == 0)
+														{{ Form::open(array('method' => 'post', 'route' => array('post.sah.penduduk.kelurahan', $penduduk->id))) }}
+															<button type="submit" class="btn btn-warning btn-xs pull-right">Sahkan</button>
+														{{ Form::close() }}
+														{{ Form::checkbox('sah_kelurahan', $penduduk->sah_kelurahan, '', array('disabled' => 'disabled')) }} Belum Sah 
+													@else
+														{{ Form::open(array('method' => 'post', 'route' => array('post.batal.penduduk.kelurahan', $penduduk->id))) }}
+															<button type="submit" class="btn btn-danger btn-xs pull-right">Batalkan</button>
+														{{ Form::close() }}
+														{{ Form::checkbox('sah_kelurahan', $penduduk->sah_kelurahan, 'checked', array('disabled' => 'disabled')) }} Telah Disahkan 
+													@endif
+												</td>
 												<td>
 													{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.penduduk.destroy', $penduduk->id))) }}
 														<button type="submit" class="btn btn-danger btn-xs pull-right">Hapus</button>

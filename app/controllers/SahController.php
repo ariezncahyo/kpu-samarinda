@@ -145,6 +145,70 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan('Pengasahan ' . $temp->nama . ' telah dibatalkan.');
+		return Redirect::back()->withPesan('Pengesahan ' . $temp->nama . ' telah dibatalkan.');
+	}
+
+	/*
+	** POST localhost:8000/admin/sah/penduduk/{id}
+	*/
+	public function postPendudukKelurahan($id) {
+		
+		# Temukan id kecamatan
+		$temp = Penduduk::where('id', '=', $id)->first();
+
+		# Ubah keabsahan
+		$temp->sah_kelurahan = 1;
+		$temp->save();
+
+		# Kembali kehalaman sebelumnya dengan pesan perubahan
+		return Redirect::back()->withPesan($temp->nama . ' telah disahkan.');
+	}
+
+	/*
+	** POST localhost:8000/admin/sah/penduduk/batal/{id}
+	*/
+	public function postBatalPendudukKelurahan($id) {
+		
+		# Temukan id kecamatan
+		$temp = Penduduk::where('id', '=', $id)->first();
+
+		# Ubah keabsahan
+		$temp->sah_kelurahan = 0;
+		$temp->save();
+
+		# Kembali kehalaman sebelumnya dengan pesan perubahan
+		return Redirect::back()->withPesan('Pengesahan ' . $temp->nama . ' telah dibatalkan.');
+	}
+
+	/*
+	** POST localhost:8000/admin/sah/penduduk/{id}
+	*/
+	public function postPendudukKecamatan($id) {
+		
+		# Temukan id kecamatan
+		$temp = Penduduk::where('id', '=', $id)->first();
+
+		# Ubah keabsahan
+		$temp->sah_kecamatan = 1;
+		$temp->save();
+
+		# Kembali kehalaman sebelumnya dengan pesan perubahan
+		return Redirect::back()->withPesan($temp->nama . ' telah disahkan.');
+	}
+
+	/*
+	** POST localhost:8000/admin/sah/penduduk/batal/{id}
+	*/
+	public function postBatalPendudukKecamatan($id) {
+		
+		# Temukan id kecamatan
+		$temp = Penduduk::where('id', '=', $id)->first();
+
+		# Ubah keabsahan
+		$temp->sah_kecamatan = 0;
+		$temp->save();
+
+		# Kembali kehalaman sebelumnya dengan pesan perubahan
+		return Redirect::back()->withPesan('Pengesahan ' . $temp->nama . ' telah dibatalkan.');
 	}
 }

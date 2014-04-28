@@ -24,7 +24,7 @@
                                 {{ Form::model($tps, array('method' => 'PATCH', 'route' => array('admin.tps.update', $tps->id), 'class' => 'form-horizontal group-border-dashed')) }}
                                     <div class="form-group no-padding">
                                         <div class="col-sm-7">
-                                            <h3 class="hthin">Buat TPS Baru</h3>
+                                            <h3 class="hthin">Ubah Informasi TPS </h3>
                                         </div>
                                     </div>
                                     <div class="form-group {{ ($errors->has('nama_ketua')) ? 'has-error' : '' }}">

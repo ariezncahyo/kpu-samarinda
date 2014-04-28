@@ -52,14 +52,12 @@
 												<td>{{{ $tps->lokasi }}}</td>
 												<td>{{{ $tps->nomor_urut }}}</td>
 												<td>
-												@if($tps->sah == 0)
-														
+													@if($tps->sah == 0)
 														{{ Form::open(array('method' => 'post', 'route' => array('post.sah.tps', $tps->id))) }}
 															<button type="submit" class="btn btn-warning btn-xs pull-right">Sahkan</button>
 														{{ Form::close() }}
 														{{ Form::checkbox('sah', $tps->sah, '', array('disabled' => 'disabled')) }} Belum Sah 
 													@else
-														
 														{{ Form::open(array('method' => 'post', 'route' => array('post.batal.tps', $tps->id))) }}
 															<button type="submit" class="btn btn-danger btn-xs pull-right">Batalkan</button>
 														{{ Form::close() }}

@@ -68,9 +68,10 @@ class TpsController extends BaseController {
 		$lokasi = Input::get('lokasi');
 		$nomor_urut = Input::get('nomor_urut');
 		$id_kelurahan = Petugas::where('id', '=', Auth::user()->id)->first()->id_kelurahan;
+		$sah = 0;
 
 		# Gabung
-		$inputan = compact('nama_ketua', 'lokasi', 'nomor_urut', 'id_kelurahan');
+		$inputan = compact('nama_ketua', 'lokasi', 'nomor_urut', 'id_kelurahan', 'sah');
 
 		# Masukin tps baru kedalam database
 		Tps::create($inputan);

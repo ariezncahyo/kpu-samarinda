@@ -18,10 +18,14 @@ class KelurahanController extends BaseController {
 	| Halaman Pembuatan kelurahan baru
 	|--------------------------------------------------------------------------
 	*/
-	public function index() {
+	public function index($id=null) {
 
 		# Simpan semua isi kelurahan kedalam variabel $kelurahan
+
 		$kelurahan = Kelurahan::all();
+
+		if($id!=null)
+			$kelurahan = Kelurahan::where('id_kecamatan', $id)->get();
 
 		# Tampilkan view yang dituju beserta variabel kelurahan
 		return View::make('admin.kelurahan.index', compact('kelurahan'));

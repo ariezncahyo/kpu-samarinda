@@ -17,13 +17,30 @@ class PendudukController extends BaseController {
 	| Halaman Pembuatan penduduk baru
 	|--------------------------------------------------------------------------
 	*/
-	public function index() {
+	public function index($id=null, $tps=null) {
 
-		# Id Pengguna aktif
-		$user = Petugas::where('id', '=', Auth::user()->id)->first()->id_kelurahan;
+		# Kondisi Jika Admin yang login
+		if((Auth::user()->id_hak_akses === 1) || (Auth::user()->id_hak_akses === 2)) {
 
-		# Simpan semua isi tps kedalam variabel $tps
-		$penduduk = Penduduk::where('id_kelurahan', '=', $user)->get();
+			# Ambil semua data kelurahan
+			$penduduk = Penduduk::all();
+			if($id != null)
+				$penduduk = Penduduk::where('id_kelurahan', $id)->get();
+
+
+			if($tps != null)
+				$penduduk = Penduduk::where('id_tps', $tps)->get();
+
+		# Sedangkan selain Admin
+		} else {
+
+			# Id Pengguna aktif
+			$user = Petugas::where('id', '=', Auth::user()->id)->first()->id_kelurahan;
+
+			# Simpan semua isi tps kedalam variabel $tps
+			$penduduk = Penduduk::where('id_kelurahan', '=', $user)->get();
+
+		}
 
 		# Tampilkan view yang dituju beserta variabel penduduk
 		return View::make('admin.penduduk.index', compact('penduduk'));
@@ -199,6 +216,47 @@ class PendudukController extends BaseController {
 		# Rujuk ke identitas route yang dimaksud
 		return Redirect::route('admin.penduduk.index')
 			->withPesan('Penduduk berhasil dihapus.');
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Daftar Pemilih Sementara
+	|--------------------------------------------------------------------------
+	*/
+	public function dps() {
+
+		$penduduk = Penduduk::with('kelurahan')->with('kecamatan')->get();
+
+		return View::make('admin.penduduk.dps', compact('penduduk'));
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Daftar Pemilih Tetap
+	|--------------------------------------------------------------------------
+	*/
+	public function dpt() {
+
+		$penduduk = Penduduk::all();
+
+		return View::make('admin.penduduk.dpt', compact('penduduk'));
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Data Kecamatan
+	|--------------------------------------------------------------------------
+	*/
+	public function kecamatan() {
+
+		# Id Pengguna aktif
+		$user = Petugas::where('id', '=', Auth::user()->id)->first()->id_kecamatan;
+
+		# Simpan semua isi tps kedalam variabel $tps
+		$penduduk = Penduduk::where('id_kecamatan', '=', $user)->get();
+
+		# Tampilkan view yang dituju beserta variabel penduduk
+		return View::make('admin.penduduk.index', compact('penduduk'));
 	}
 
 }

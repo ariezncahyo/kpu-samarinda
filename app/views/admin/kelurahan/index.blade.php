@@ -46,7 +46,7 @@
 											@foreach ($kelurahan as $kelurahan)
 											<tr>
 												<td>{{{ $kelurahan->id }}}</td>
-												<td>{{{ $kelurahan->nama }}}</td>
+												<td>{{ HTML::link('admin/per-kelurahan/'.$kelurahan->id, $kelurahan->nama) }}</td>
 												<td>{{{ $kelurahan->kecamatan->nama }}}</td>
 												<td>
 													{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.kelurahan.destroy', $kelurahan->id))) }}

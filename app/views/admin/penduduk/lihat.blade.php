@@ -72,7 +72,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">TPS</label>
 									<div class="col-sm-9">
-										<label class="control-label">{{ $penduduk->tps }}</label>
+										<label class="control-label">{{ $penduduk->tps->nomor_urut }}</label>
 									</div>
 								</div>
 								<div class="form-group">

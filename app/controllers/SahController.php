@@ -37,7 +37,7 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan($temp->nama . ' telah disahkan.');
+		return Redirect::back()->withPesan('Berhasil disahkan.');
 	}
 
 	/*
@@ -53,7 +53,7 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan('Pengasahan ' . $temp->nama . ' telah dibatalkan.');
+		return Redirect::back()->withPesan('Pengasahan telah dibatalkan.');
 	}
 
 	/*
@@ -97,7 +97,7 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan($temp->nama . ' telah disahkan.');
+		return Redirect::back()->withPesan('Berhasil disahkan.');
 	}
 
 	/*
@@ -113,7 +113,7 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan('Pengasahan ' . $temp->nama . ' telah dibatalkan.');
+		return Redirect::back()->withPesan('Pengasahan telah dibatalkan.');
 	}
 
 	/*
@@ -129,7 +129,7 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan($temp->nama . ' telah disahkan.');
+		return Redirect::back()->withPesan('Berhasil disahkan.');
 	}
 
 	/*
@@ -145,7 +145,7 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan('Pengesahan ' . $temp->nama . ' telah dibatalkan.');
+		return Redirect::back()->withPesan('Pengesahan telah dibatalkan.');
 	}
 
 	/*
@@ -161,7 +161,7 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan($temp->nama . ' telah disahkan.');
+		return Redirect::back()->withPesan('Berhasil disahkan.');
 	}
 
 	/*
@@ -177,7 +177,7 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan('Pengesahan ' . $temp->nama . ' telah dibatalkan.');
+		return Redirect::back()->withPesan('Pengesahan telah dibatalkan.');
 	}
 
 	/*
@@ -193,7 +193,7 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan($temp->nama . ' telah disahkan.');
+		return Redirect::back()->withPesan('Berhasil disahkan.');
 	}
 
 	/*
@@ -209,6 +209,6 @@ class SahController extends BaseController {
 		$temp->save();
 
 		# Kembali kehalaman sebelumnya dengan pesan perubahan
-		return Redirect::back()->withPesan('Pengesahan ' . $temp->nama . ' telah dibatalkan.');
+		return Redirect::back()->withPesan('Pengesahan telah dibatalkan.');
 	}
 }

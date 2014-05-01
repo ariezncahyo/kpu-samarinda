@@ -17,7 +17,7 @@
 			</div>		
 			<div class="cl-mcont">
 				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
+					<div class="col-md-8 col-md-offset-2">
 						@if(Session::has('pesan'))
 						<div class="alert alert-success alert-white rounded">
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

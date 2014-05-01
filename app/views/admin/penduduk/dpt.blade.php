@@ -21,8 +21,10 @@
 						<div class="block-flat">
 							@if ($penduduk->count())
 							<div class="header">	
-								<!-- <a href="{{ route('admin.penduduk.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah Penduduk</a>						
-								-->
+								@if((Auth::user()->id_hak_akses == 1) || (Auth::user()->id_hak_akses == 2))
+								@else
+								<a href="{{ route('admin.penduduk.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah Penduduk</a>						
+								@endif
 								<h3>Daftar Pemilih Tetap</h3>
 							</div>
 							<div class="content">
@@ -51,7 +53,7 @@
 													<td>{{{ $penduduk->kk }}}</td>
 													<td>{{{ $penduduk->ktp }}}</td>
 													<td>{{{ $penduduk->nama }}}</td>
-													<td>{{{ $penduduk->tempat_lahir }}}, {{{ date("d M Y", strtotime($penduduk->tanggal_lahir)) }}}</td>
+													<td>{{{ $penduduk->tempat_lahir }}}, {{{ $penduduk->tanggal_lahir }}}</td>
 													<td>{{{ ($penduduk->jenis_kelamin==0) ? 'Laki-laki' : 'Perempuan' }}}</td>
 													<td>{{{ $penduduk->kelurahan->nama }}}</td>
 													<td>{{{ $penduduk->kecamatan->nama }}}</td>
@@ -77,9 +79,12 @@
 								@else
 									<h3 class="text-center"><i class="fa fa-eye-slash"></i> Anda belum memiliki data penduduk.</h3>
 									<br/>
+									@if(Auth::user()->id_hak_akses == 1)
+									@else
 									<center>
 										<a href="{{ route('admin.penduduk.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Baru</a>
 									</center>
+									@endif
 								@endif
 							</div>
 						</div>				

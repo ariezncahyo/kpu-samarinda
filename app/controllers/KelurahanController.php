@@ -19,16 +19,17 @@ class KelurahanController extends BaseController {
 	|--------------------------------------------------------------------------
 	*/
 	public function index($id=null) {
-
-		# Simpan semua isi kelurahan kedalam variabel $kelurahan
-
-		$kelurahan = Kelurahan::all();
-
-		if($id!=null)
+		if($id==null) {
+			$kelurahan = Kelurahan::all();
+			$bc = 'Seluruh Kelurahan';
+			$judul = 'Daftar Lengkap Kelurahan';
+		} elseif($id!=null) {
 			$kelurahan = Kelurahan::where('id_kecamatan', $id)->get();
-
+			$bc = 'Kecamatan ' . Kecamatan::where('id', $id)->first()->nama;
+			$judul = 'Daftar Kelurahan di ' . $bc;
+		}
 		# Tampilkan view yang dituju beserta variabel kelurahan
-		return View::make('admin.kelurahan.index', compact('kelurahan'));
+		return View::make('admin.kelurahan.index', compact('kelurahan', 'bc', 'judul'));
 	}
 
 	/*

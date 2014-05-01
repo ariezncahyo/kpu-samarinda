@@ -25,6 +25,13 @@
                             <strong>Perhatian!</strong> {{ Session::get('pesan') }}
                         </div>
                         @endif
+                        @if($errors->has('visimisi'))
+                        <div class="alert alert-warning alert-white rounded">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <div class="icon"><i class="fa fa-warning"></i></div>
+                            <strong>Perhatian!</strong> {{ $errors->first('visimisi') }}
+                        </div>
+                        @endif
                         <div class="block-flat">
                         	{{ Form::open(array('route' => 'admin.visimisi', 'class' => 'form-horizontal group-border-dashed')) }}
                         	<div class="header">	
@@ -35,9 +42,6 @@
 								<div class="form-group">
                                     <div class="col-sm-12">
                                         <textarea class="input-block-level" id="summernote" name="visimisi">{{ $temp->visimisi }}</textarea>
-                                        @if($errors->has('sejarah'))
-                                            <small><span class="help-block text-center">{{ $errors->first('sejarah') }}</span></small>
-                                        @endif
                                     </div>
                                 </div>
 							</div>

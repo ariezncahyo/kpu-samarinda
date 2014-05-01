@@ -39,7 +39,7 @@ class ProfilController extends BaseController {
 		if($v->fails())
 
 			# Kembali kehalaman sama dengan pesan error
-			return Redirect::back()->withErrors($v)->withPesan('Bermasalah dengan validasi');
+			return Redirect::back()->withErrors($v);
 
 		# Ubah Isi Database
 		$this->temp->sejarah = Input::get('sejarah');
@@ -73,7 +73,7 @@ class ProfilController extends BaseController {
 		if($v->fails())
 
 			# Kembali kehalaman sama dengan pesan error
-			return Redirect::back()->withErrors($v)->withPesan('Bermasalah dengan validasi');
+			return Redirect::back()->withErrors($v);
 
 		# Ubah Isi Database
 		$this->temp->visimisi = Input::get('visimisi');
@@ -101,13 +101,13 @@ class ProfilController extends BaseController {
 	public function postStruktur() {
 		
 		# validasi
-		$v = Validator::make(Input::all(), array('struktur_organisasi' => 'required|mimes:png,jpg,jpeg,gif'));
+		$v = Validator::make(Input::all(), array('struktur_organisasi' => 'mimes:png,jpg,jpeg,gif'));
 		
 		# Bila gagal
 		if($v->fails())
 
 			# Kembali kehalaman sama dengan pesan error
-			return Redirect::back()->withErrors($v)->withPesan('Bermasalah dengan validasi');
+			return Redirect::back()->withErrors($v);
 
 		# Kelola file
 		if (Input::hasFile('struktur_organisasi')) {
@@ -123,7 +123,7 @@ class ProfilController extends BaseController {
 		$this->temp->save();
 
 		# Kondisional Pesan
-		$pesan = (Input::hasFile('struktur_organisasi')) ? 'Struktur Organisasi berhasil diubah.' : 'Tidak ada perubahan terjadi.';
+		$pesan = (Input::hasFile('struktur_organisasi')) ? 'Struktur Organisasi berhasil diubah.' : 'Tidak ada perubahan yang terjadi.';
 
 		# Kembali ke halaman sama dengan pesan sukses
 		return Redirect::back()->withPesan($pesan);
@@ -153,7 +153,7 @@ class ProfilController extends BaseController {
 		if($v->fails())
 
 			# Kembali kehalaman sama dengan pesan error
-			return Redirect::back()->withErrors($v)->withPesan('Bermasalah dengan validasi');
+			return Redirect::back()->withErrors($v);
 
 		# Ubah Isi Database
 		$this->temp->tugas = Input::get('tugas');

@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="Noviyanto Rachmady">
 		<link rel="shortcut icon" href="{{ asset('aset/img/favicon.ico') }}">
-		<title>KPU Admin Login</title>
+		<title>KPU Kota Samarinda</title>
 		<!-- Koleksi CSS -->
 		{{ HTML::style('packages/cleanzone/js/bootstrap/dist/css/bootstrap.css') }}
 		{{ HTML::style('packages/cleanzone/fonts/font-awesome-4/css/font-awesome.min.css') }}

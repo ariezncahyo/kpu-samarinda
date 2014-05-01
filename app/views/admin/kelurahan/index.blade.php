@@ -12,7 +12,7 @@
 				<ol class="breadcrumb">
 				  <li><a href="{{ route('admin') }}"><i class="fa fa-home"></i></a></li>
 				  <li><a href="#">Data Master</a></li>
-				  <li class="active">Kelurahan</li>
+				  <li class="active">{{ $bc }}</li>
 				</ol>
 			</div>		
 			<div class="cl-mcont">
@@ -29,7 +29,7 @@
 							@if ($kelurahan->count())
 							<div class="header">	
 								<a href="{{ route('admin.kelurahan.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah Kelurahan</a>						
-								<h3>Daftar Seluruh Kelurahan</h3>
+								<h3>{{ $judul }}</h3>
 							</div>
 							<div class="content">
 								<div class="table-responsive">
@@ -39,6 +39,7 @@
 												<th>ID</th>
 												<th>Nama Kelurahan</th>
 												<th>Kecamatan</th>
+												<th>Jumlah Penduduk</th>
 												<th>Aksi</th>
 											</tr>
 										</thead>
@@ -48,6 +49,7 @@
 												<td>{{{ $kelurahan->id }}}</td>
 												<td>{{ HTML::link('admin/per-kelurahan/'.$kelurahan->id, $kelurahan->nama) }}</td>
 												<td>{{{ $kelurahan->kecamatan->nama }}}</td>
+												<td>{{{ $kelurahan->penduduk->count() }}}</td>
 												<td>
 													{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.kelurahan.destroy', $kelurahan->id))) }}
 														<button type="submit" class="btn btn-danger btn-xs pull-right">Hapus</button>

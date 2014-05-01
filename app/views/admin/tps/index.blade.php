@@ -40,6 +40,7 @@
 												<th>Nama Ketua</th>
 												<th>Lokasi</th>
 												<th>No Urut</th>
+												<th>Penduduk</th>
 												<th>Sah</th>
 												<th>Aksi</th>
 											</tr>
@@ -51,6 +52,7 @@
 												<td>{{{ $tps->nama_ketua }}}</td>
 												<td>{{{ $tps->lokasi }}}</td>
 												<td>{{{ $tps->nomor_urut }}}</td>
+												<td>{{{ $tps->penduduk->count() }}} Orang</td>
 												<td>
 													@if($tps->sah == 0)
 														{{ Form::open(array('method' => 'post', 'route' => array('post.sah.tps', $tps->id))) }}

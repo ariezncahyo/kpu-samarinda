@@ -42,7 +42,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">TTL</label>
 									<div class="col-sm-9">
-										<label class="control-label">{{ $penduduk->tempat_lahir }}, {{ date("d F Y",strtotime($penduduk->tanggal_lahir)) }}</label>
+										<label class="control-label">{{ $penduduk->tempat_lahir }}, {{ $penduduk->tanggal_lahir }}</label>
 									</div>
 								</div>	
 								<div class="form-group">

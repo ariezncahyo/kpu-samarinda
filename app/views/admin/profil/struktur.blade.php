@@ -21,6 +21,13 @@
                             <strong>Perhatian!</strong> {{ Session::get('pesan') }}
                         </div>
                         @endif
+                        @if($errors->has('struktur_organisasi'))
+                        <div class="alert alert-warning alert-white rounded">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <div class="icon"><i class="fa fa-warning"></i></div>
+                            <strong>Perhatian!</strong> {{ $errors->first('struktur_organisasi') }}
+                        </div>
+                        @endif
                     	<div class="block-flat">
                             {{ Form::open(array('route' => 'admin.struktur', 'files' => 'true','class' => 'form-horizontal group-border-dashed')) }}
                             <div class="header">    
@@ -35,13 +42,10 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('struktur_organisasi') ? 'has-error' : '' }}">
                                     <div class="col-sm-12">
                                         {{ Form::file('struktur_organisasi') }}
                                         <span class="help-block">*Abaikan bila tidak ada perubahan struktur organisasi.</span>
-                                        @if($errors->has('sejarah'))
-                                            <small><span class="help-block text-center">{{ $errors->first('sejarah') }}</span></small>
-                                        @endif
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,4 @@
 <?php
-
-
 /*
 | FRONTEND ROUTE ==========================
 */
@@ -73,8 +71,8 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::post('sah/tps/batal/{id}', ['as' => 'post.batal.tps', 'uses' => 'SahController@postBatalTps']);
 	Route::post('sah/penduduk/kelurahan/{id}', ['as' => 'post.sah.penduduk.kelurahan', 'uses' => 'SahController@postPendudukKelurahan']);
 	Route::post('sah/penduduk/kelurahan/batal/{id}', ['as' => 'post.batal.penduduk.kelurahan', 'uses' => 'SahController@postBatalPendudukKelurahan']);
-	Route::post('sah/penduduk/kecamatan/{id}', ['as' => 'post.sah.penduduk.kecamatan', 'uses' => 'SahController@postPendudukKelurahan']);
-	Route::post('sah/penduduk/kecamatan/batal/{id}', ['as' => 'post.batal.penduduk.kecamatan', 'uses' => 'SahController@postBatalPendudukKelurahan']);
+	Route::post('sah/penduduk/kecamatan/{id}', ['as' => 'post.sah.penduduk.kecamatan', 'uses' => 'SahController@postPendudukKecamatan']);
+	Route::post('sah/penduduk/kecamatan/batal/{id}', ['as' => 'post.batal.penduduk.kecamatan', 'uses' => 'SahController@postBatalPendudukKecamatan']);
 	Route::post('saran/{id}', ['as' => 'post.admin.saran', 'uses' => 'KpuController@postAdminSaran']);
 });
 

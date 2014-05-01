@@ -182,7 +182,7 @@ class KpuController extends BaseController {
 		$komentar = Komentar::destroy($id);
 
 		# Kembali ke halaman sama dengan pesan sukses
-		return Redirect::back()->withPesan('Komentar dari '. $komentar->nama . ' telah terhapus.');
+		return Redirect::back()->withPesan('Salah satu komentar telah terhapus.');
 	}
 
 }
